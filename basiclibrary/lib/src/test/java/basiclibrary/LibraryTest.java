@@ -5,6 +5,10 @@ package basiclibrary;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
@@ -60,6 +64,70 @@ class LibraryTest {
 
         //Assert
         Assertions.assertEquals(arr[0],result);
+    }
+
+//=======================================Test For Lab03==================================================================================
+
+
+    // =========First Function=================
+    @Test void print_Max_Min_MissValue(){
+        // 1 Arrange
+        // system under test
+        Library sut = new Library();
+        //Act
+        int[][] weeklyMonthTemperatures = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+        int[][] empty = {};
+        int[][] oneElement = {{1}};
+        String result = sut.print_Max_Min_MissValue(weeklyMonthTemperatures);
+        String result2 = sut.print_Max_Min_MissValue(empty);
+        String result3 = sut.print_Max_Min_MissValue(oneElement);
+
+        //Assert
+        Assertions.assertEquals("High: 72\n" +
+                "Low: 51\n" +
+                "Never saw temperature: 63\n" +
+                "Never saw temperature: 67\n" +
+                "Never saw temperature: 68\n" +
+                "Never saw temperature: 69\n",result);
+
+        Assertions.assertEquals("Empty Array!!" , result2);
+        Assertions.assertEquals("there is one Temperature : " + oneElement[0][0] , result3);
+
+    }
+
+
+    // =========Second Function=================
+
+    @Test void tally(){
+        // 1 Arrange
+        // system under test
+        Library sut = new Library();
+
+        //Act
+        List<String> votes1 = new ArrayList<>();
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
+
+        String result = sut.tally(votes);
+        String result1 = sut.tally(votes1); // Empty List
+        //Assert
+        Assertions.assertEquals("Bush",result);
+        Assertions.assertEquals("The List is Empty !!!",result1);
+
+        //////// Try test if there is == between 2 value
     }
 
 }

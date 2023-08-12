@@ -3,38 +3,65 @@
  */
 package basiclibrary;
 
-import java.util.Random;
+import java.util.*;
 
 public class Library {
 
     public static void main(String[] args) {
 
-        int[][] arr = {
-                {1, 1, 1, 1, 1, 1, 1},
+//        int[][] arr = {
+//                {1, 1, 1, 1, 1, 1, 1},
+//                {66, 64, 58, 65, 71, 57, 60},
+//                {57, 65, 65, 70, 72, 65, 51},
+//                {7, 5, 5, 0, 2, 5, 1},
+//                {55, 54, 60, 53, 59, 57, 61},
+//                {65, 56, 55, 52, 55, 62, 57},
+//                {66, 64, 58, 65, 71, 57, 60},
+//                {166, 164, 158, 165, 171, 157, 160}
+//        };
+
+//        int[] x = {66, 64, 58, 65, 71, 60};
+//
+//        printArray(roll(5));
+//
+//        System.out.println("****************************");
+//
+//        System.out.println(calculatingAverages(x));
+//
+//        System.out.println("****************************");
+//
+//        System.out.println(containsDuplicates(x));
+//
+//        System.out.println("****************************");
+//
+//        lowestAverageArray(arr);
+
+        System.out.println("****************************");
+
+        int[][] weeklyMonthTemperatures = {
                 {66, 64, 58, 65, 71, 57, 60},
                 {57, 65, 65, 70, 72, 65, 51},
-                {7, 5, 5, 0, 2, 5, 1},
                 {55, 54, 60, 53, 59, 57, 61},
-                {65, 56, 55, 52, 55, 62, 57},
-                {66, 64, 58, 65, 71, 57, 60},
-                {166, 164, 158, 165, 171, 157, 160}
+                {65, 56, 55, 52, 55, 62, 57}
         };
-
-        int[] x = {66, 64, 58, 65, 71, 60};
-
-        printArray(roll(5));
+        System.out.println(print_Max_Min_MissValue(weeklyMonthTemperatures) );
 
         System.out.println("****************************");
 
-        System.out.println(calculatingAverages(x));
+        List<String> votes = new ArrayList<>();
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Bush");
+        votes.add("Shrub");
+        votes.add("Hedge");
+        votes.add("Shrub");
+        votes.add("Bush");
+        votes.add("Hedge");
+        votes.add("Bush");
 
-        System.out.println("****************************");
+        String winner = tally(votes);
+        System.out.println(winner + " received the most votes!");
 
-        System.out.println(containsDuplicates(x));
-
-        System.out.println("****************************");
-
-        lowestAverageArray(arr);
 
     }
 
@@ -103,6 +130,108 @@ public class Library {
         System.out.print("lowest Average Array : ");
         printArray(lowestAverageArray);
         return lowestAverageArray;
+    }
+
+    // ==================================================================================
+    // Lab03 - 1
+
+    // Function Analyzing Weather Data
+    public static Set<Integer> AnalyzingWeatherData(int[][] arr) {
+        Set<Integer> hashSetContainAllTemperatureWithoutDuplicated = new HashSet<>();
+        // Add all values to the HashSet
+        for (int[] arrayInMainArray: arr) {
+            for (int tempInArray : arrayInMainArray) {
+                hashSetContainAllTemperatureWithoutDuplicated.add(tempInArray);
+            }
+        }
+        return hashSetContainAllTemperatureWithoutDuplicated;
+    }
+
+    // Function To Find Max Value in HashSet
+    public static int maxValueInHashSet(Set<Integer> hashSetContainAllTemperatureWithoutDuplicated){
+        int maxValue = Integer.MIN_VALUE;
+        for (int tempInHashSetWithoutDuplicated : hashSetContainAllTemperatureWithoutDuplicated) {
+            if (tempInHashSetWithoutDuplicated > maxValue){
+                maxValue = tempInHashSetWithoutDuplicated;
+            }
+        }
+        return maxValue;
+    }
+
+    // Function To Find Min Value in HashSet
+    public static int minValueInHashSet(Set<Integer> hashSetContainAllTemperatureWithoutDuplicated){
+        int minValue = Integer.MAX_VALUE;
+        for (int tempInHashSetWithoutDuplicated : hashSetContainAllTemperatureWithoutDuplicated) {
+            if (tempInHashSetWithoutDuplicated < minValue){
+                minValue = tempInHashSetWithoutDuplicated;
+            }
+        }
+        return minValue;
+    }
+
+    //Function To Determine Missing Value Between (Max , Min) In HashSet
+    public static String missingValueBetweenMAX_AND_MIN(Set<Integer> hashSetContainAllTemperatureWithoutDuplicated){
+        String NeverSawTemperature = "";
+        for (int i = minValueInHashSet(hashSetContainAllTemperatureWithoutDuplicated); i < maxValueInHashSet(hashSetContainAllTemperatureWithoutDuplicated); i++) {
+            if(!hashSetContainAllTemperatureWithoutDuplicated.contains(i)){
+                NeverSawTemperature += "Never saw temperature: " + i +"\n";
+            }
+        }
+        return NeverSawTemperature;
+    }
+
+    //Function Call Max ,Min , MissValue To Print All value
+    public static String print_Max_Min_MissValue(int[][] arr){
+
+        if(arr.length==0 || (arr.length==1 && arr[0].length==0) ){
+            return "Empty Array!!";
+        } else if (arr.length==1 && arr[0].length==1) {
+            int oneTemp = arr[0][0];
+            return "there is one Temperature : " + oneTemp;
+        } else{
+        Set<Integer> hashSetContainAllTemperatureWithoutDuplicated =AnalyzingWeatherData(arr);
+        int maxValueInHashSet = maxValueInHashSet(hashSetContainAllTemperatureWithoutDuplicated);
+        int minValueInHashSet = minValueInHashSet(hashSetContainAllTemperatureWithoutDuplicated);
+        String x  = missingValueBetweenMAX_AND_MIN(hashSetContainAllTemperatureWithoutDuplicated);
+
+            return "High: " + maxValueInHashSet +
+                "\n"+ "Low: " + minValueInHashSet+"\n"+ x;
+        }
+    }
+
+// ==================================================================================
+    // Lab03 - 2
+
+    // Function tally
+    public static String tally(List<String> votes){
+       if(!votes.isEmpty()){
+           HashMap<String,Integer> hashMapContainAllVotes = new HashMap<>();
+           for(String nameInArrayList : votes){
+               if(hashMapContainAllVotes.containsKey(nameInArrayList)){
+                   hashMapContainAllVotes.put(nameInArrayList,hashMapContainAllVotes.get(nameInArrayList)+1);
+               }
+               else { // if the HashMpa didn't Contain the key (the value in ArrayLis) --> Add it and give the value = 1
+                   hashMapContainAllVotes.put(nameInArrayList,1);
+               }
+           }
+           return mostVoted(hashMapContainAllVotes) ;
+       }else {
+           return "The List is Empty !!!";
+       }
+    }
+
+    // Function mostVoted To determine Who Has Most Voted
+    public static String mostVoted(HashMap<String, Integer> hashMapContainAllVotes) {
+        String mostVoted = "";
+        int maxVotes = -1;
+        // Iterate through each entry (Name and vote count) in the HashMap.
+        for (HashMap.Entry<String, Integer> entry : hashMapContainAllVotes.entrySet()) {
+            if (entry.getValue() > maxVotes) {
+                maxVotes = entry.getValue();
+                mostVoted = entry.getKey();
+            }
+        }
+        return mostVoted;
     }
 
 
