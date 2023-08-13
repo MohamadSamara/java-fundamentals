@@ -6,4 +6,4 @@
 
 - -Lab03 : , continue working in basiclibrary directory with add Methods --> AnalyzingWeatherData(int[][] arr),  maxValueInHashSet(Set<Integer> hashSetContainAllTemperatureWithoutDuplicated), minValueInHashSet(Set<Integer> hashSetContainAllTemperatureWithoutDuplicated), missingValueBetweenMAX_AND_MIN(Set<Integer> hashSetContainAllTemperatureWithoutDuplicated), print_Max_Min_MissValue(int[][] arr)
 
-And tally(List<String> votes), mostVoted(HashMap<String, Integer> hashMapContainAllVotes)
+  And tally(List<String> votes), mostVoted(HashMap<String, Integer> hashMapContainAllVotes)
