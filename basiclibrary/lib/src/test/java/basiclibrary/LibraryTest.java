@@ -127,7 +127,6 @@ class LibraryTest {
         Assertions.assertEquals("Bush",result);
         Assertions.assertEquals("The List is Empty !!!",result1);
 
-        //////// Try test if there is == between 2 value
     }
 
 }
