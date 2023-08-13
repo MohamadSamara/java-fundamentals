@@ -11,13 +11,12 @@ public class App {
         readFileAndDiscoveredError();
     }
     public static void readFileAndDiscoveredError (){
-
-        Path basedPath = Path.of("C:/java-fundamentals/linter/app/src/main/");
-        Path relativePath = basedPath.resolve("resources/gates.js");
-        try ( Scanner read = new Scanner(relativePath) ) {
+// linter/app/src/main/resources
+        Path path = Path.of("app/src/main/resources/gates.js");
+        try ( Scanner read = new Scanner(path) ) {
             System.out.println("********************************************************\n");
             int count = 1;
-            List<String> lines = Files.readAllLines(relativePath);
+            List<String> lines = Files.readAllLines(path);
             for (String line : lines) {
                 if( line.endsWith(";") ||
                         line.isEmpty() ||
