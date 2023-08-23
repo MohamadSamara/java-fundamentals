@@ -4,59 +4,44 @@
 package inheritance;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 class LibraryTest {
-
-
     @Test
     public void testRestaurantConstructorWithValidPriceCategory() {
         Restaurant x = new Restaurant("Restaurant X", 3);
-       int p =  x.getPriceCategory();
-       assertEquals(3,p);
-
+       assertEquals(3,x.priceCategory);
     }
-
     @Test
     public void testRestaurantConstructorWithInvalidPriceCategory() {
         assertThrows(IllegalArgumentException.class, () -> new Restaurant("Restaurant X", 10));
     }
-
     @Test
     public void testRestaurantToString() {
         Restaurant restaurant = new Restaurant("Restaurant X", 3);
-        assertEquals("Restaurant{name='Restaurant X', numberOfStars=0, priceCategory=3}", restaurant.toString());
+        assertEquals("Restaurant{name='Restaurant X', numberOfStars=0.0, priceCategory=3}", restaurant.toString());
     }
-
     @Test
     public void testReviewConstructorWithValidPriceCategory() {
         Review x = new Review("Body..", "Author", 2);
-        int p =  x.getStars();
-        assertEquals(2,p);
+        assertEquals(2,x.noOfStars);
     }
-
     @Test
     public void testReviewConstructorWithInvalidPriceCategory() {
         assertThrows(IllegalArgumentException.class, () -> new Review("Body..", "Author", 10));
     }
-
     @Test
     public void testReviewToString() {
         Review review = new Review("Great place!", "User1", 4);
-        assertEquals("Review{body='Great place!', author='User1', stars=4}", review.toString());
+        assertEquals("Review{body='Great place!', author='User1', noOfStars=4.0}", review.toString());
     }
-
-
     @Test
     public void testAddReviewAndAssociationWithRestaurant() {
         Restaurant restaurant = new Restaurant("Restaurant X", 2);
-        HashMap<String, List<Object>> testRestaurant = restaurant.addReview("Nice atmosphere", "User2", 5);
-        assertEquals(1, testRestaurant.size());
-        assertEquals(5, restaurant.getNumberOfStars());
-        assertEquals("Restaurant{name='Restaurant X', numberOfStars=5, priceCategory=2}",restaurant.toString());
+        Review review = new Review("Nice atmosphere", "User2", 5);
+        restaurant.addReview(review);
+
+        assertEquals(5, review.noOfStars);
+        assertEquals(5, restaurant.getAverageRating());
+        assertEquals("Restaurant{name='Restaurant X', numberOfStars=5.0, priceCategory=2}", restaurant.toString());
     }
 }

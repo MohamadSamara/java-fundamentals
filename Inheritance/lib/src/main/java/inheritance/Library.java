@@ -1,16 +1,14 @@
 package inheritance;
-
 public class Library {
     public static void main(String[] args) {
 
-        Restaurant restaurant1 = new Restaurant("My Restaurant", 3);
+        Restaurant restaurant1 = new Restaurant("Restaurant XXX" ,3);
+        Review review1 = new Review("Great food !" , "Mohamad Samara" , 5);
+        Review review2 = new Review("Good" , "Mohamad Samara2" , 3);
+        restaurant1.addReview(review1);
+        restaurant1.addReview(review2);
 
-        System.out.println("Before Add Review: " + restaurant1);
+        System.out.println(review1 +"\n" + review2  +"\n" + restaurant1);
 
-        restaurant1.addReview("Nice !", "Mohamad", 5);
-        restaurant1.addReview("Great food !", "Mohamad", 3);
-        restaurant1.addReview("Deciles !", "Ahmad", 3);
-
-        System.out.println("After Add 2 Review: " +restaurant1);
     }
 }
