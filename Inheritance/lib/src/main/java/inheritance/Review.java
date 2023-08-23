@@ -1,12 +1,20 @@
 package inheritance;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class Review {
-    private final String body;
-    private final String author;
-    private final int noStars;
+    private  String body; //
+    private  String author;
+    private  double noStars;
+    private String movie;
+    protected String name;
+    protected int countOfReview ;
+    protected double numberOfStars ;
+    protected HashMap<String, List<Object>> reviews = new HashMap<>();
 
 
-    public Review(String body, String author, int noStars) {
+    public Review(String body, String author, double noStars) {
         if(noStars > 5 || noStars < 0) {
             throw new IllegalArgumentException("Rating must be less than or equal to 5 stars");
         }
@@ -15,37 +23,49 @@ public class Review {
         this.noStars = noStars;
     }
 
+    public Review(String body, String author, double noStars , String movie) {
+        if(noStars > 5 || noStars < 0) {
+            throw new IllegalArgumentException("Rating must be less than or equal to 5 stars");
+        }
+        this.body = body;
+        this.author = author;
+        this.noStars = noStars;
+        this.movie = movie;
+    }
 
-//    public String getBody() {
-//        return body;
-//    }
+    public Review(){
+    }
 
-//    public void setBody(String body) {
-//        this.body = body;
-//    }
+    public String getBody() {
+        return body;
+    }
+    public String getAuthor() {
+        return author;
+    }
 
-
-//    public String getAuthor() {
-//        return author;
-//    }
-
-//    public void setAuthor(String author) {
-//        this.author = author;
-//    }
-//
-    public int getStars() {
+    public double getStars() {
         return noStars;
     }
-//    public void setStars(int stars) {
-//        this.noStars = stars;
-//    }
+
+    public String getMovie() {
+        return movie;
+    }
 
     @Override
     public String toString() {
-        return "Review{" +
-                "body='" + body + '\'' +
-                ", author='" + author + '\'' +
-                ", stars=" + noStars +
-                '}';
+        if (movie != null) {
+            return "Review{" +
+                    "body='" + body + '\'' +
+                    ", author='" + author + '\'' +
+                    ", stars=" + noStars +
+                    ", movie='" + movie + '\'' +
+                    '}';
+        } else {
+            return "Review{" +
+                    "body='" + body + '\'' +
+                    ", author='" + author + '\'' +
+                    ", stars=" + noStars +
+                    '}';
+        }
     }
 }

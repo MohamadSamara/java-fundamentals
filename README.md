@@ -8,7 +8,7 @@
 
   And tally(List<String> votes), mostVoted(HashMap<String, Integer> hashMapContainAllVotes)
 
-- lab06 :  Restaurant Review Library
+- lab 06 & 07 :  Restaurant Review Library
 
 This is a Java library that provides classes for managing restaurant reviews. It includes classes for `Restaurant`, `Review`, and a set of test cases for thorough testing.
 
@@ -47,6 +47,7 @@ The `LibraryTest` class contains JUnit test cases for testing the `Restaurant` a
 
 It provides the following Test methods:
 
+
 #### `testRestaurantConstructorWithValidPriceCategory`
 This test method verifies that the `Restaurant` constructor correctly initializes a restaurant with a valid price category. It creates a new `Restaurant` instance and checks if the retrieved price category matches the expected value.
 
@@ -65,5 +66,26 @@ Similar to the previous test, this case checks if the `Review` constructor throw
 #### `testReviewToString`
 This test ensures that the `toString` method of the `Review` class generates the correct string representation. It constructs a `Review` instance and compares its string representation with the expected format.
 
-#### `testAddReviewAndAssociationWithRestaurant`
+#### `testRestaurantAddReview`
 This test method verifies the association between a review and a restaurant using the `addReview` method. It creates a `Restaurant` instance, adds a review, and checks if the review is properly associated with the restaurant. It also verifies that the star rating of the restaurant is updated accordingly.
+
+####  `testShopConstructor`
+This test method verifies that the `Shop` constructor correctly initializes a shop instance. It creates a new `Shop` instance and checks if the retrieved attributes match the expected values.
+
+#### `testShopAddReview`
+This test method validates the `addReview` method of the `Shop` class. It creates a `Shop` instance, adds a review, and checks if the review is properly associated with the shop. It also verifies that the star rating of the shop is updated accordingly.
+
+#### `testTheaterConstructor`
+This test method ensures that the `Theater` constructor initializes a theater instance with the correct attributes. It creates a new `Theater` instance and checks if the retrieved attributes match the expected values.
+
+#### `testTheaterAddMovie`
+This test method validates the `addMovie` method of the `Theater` class. It creates a `Theater` instance, adds movies, and checks if the movies are properly associated with the theater.
+
+#### `testTheaterAddReview`
+This test method verifies the `addReview` method of the `Theater` class. It creates a `Theater` instance, adds a review with a movie, and checks if the review is properly associated with the theater. It also verifies that the star rating of the theater is updated accordingly.
+
+#### `testTheaterAddReviewWithoutMovie`
+This test method validates the `addReview` method of the `Theater` class when adding a review without specifying a movie. It creates a `Theater` instance, adds a review without a movie, and checks if the review is properly associated with the theater. It also verifies that the star rating of the theater is updated accordingly.
+
+
+

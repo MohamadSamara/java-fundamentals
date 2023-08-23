@@ -4,10 +4,6 @@
 package inheritance;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
@@ -29,13 +25,13 @@ class LibraryTest {
     @Test
     public void testRestaurantToString() {
         Restaurant restaurant = new Restaurant("Restaurant X", 3);
-        assertEquals("Restaurant{name='Restaurant X', numberOfStars=0, priceCategory=3}", restaurant.toString());
+        assertEquals("Restaurant{name='Restaurant X', numberOfStars=0.0, priceCategory=3}", restaurant.toString());
     }
 
     @Test
     public void testReviewConstructorWithValidPriceCategory() {
         Review x = new Review("Body..", "Author", 2);
-        int p =  x.getStars();
+        double p =  x.getStars();
         assertEquals(2,p);
     }
 
@@ -46,17 +42,61 @@ class LibraryTest {
 
     @Test
     public void testReviewToString() {
-        Review review = new Review("Great place!", "User1", 4);
-        assertEquals("Review{body='Great place!', author='User1', stars=4}", review.toString());
+        Review review = new Review("Great place!", "Mohamad", 4);
+        assertEquals("Review{body='Great place!', author='Mohamad', stars=4.0}", review.toString());
     }
 
 
+@Test
+public void testRestaurantAddReview() {
+    Restaurant restaurant = new Restaurant("Restaurant",  3);
+    Review review = new Review("Great Restaurant !", "Mohamad", 4);
+    restaurant.addReview(review);
+    assertEquals("Restaurant{name='Restaurant', numberOfStars=4.0, priceCategory=3}", restaurant.toString());
+}
+
     @Test
-    public void testAddReviewAndAssociationWithRestaurant() {
-        Restaurant restaurant = new Restaurant("Restaurant X", 2);
-        HashMap<String, List<Object>> testRestaurant = restaurant.addReview("Nice atmosphere", "User2", 5);
-        assertEquals(1, testRestaurant.size());
-        assertEquals(5, restaurant.getNumberOfStars());
-        assertEquals("Restaurant{name='Restaurant X', numberOfStars=5, priceCategory=2}",restaurant.toString());
+    public void testShopConstructor() {
+        Shop shop = new Shop("BookShop", "Nice BookShop", 2);
+        assertEquals("Shop{name='BookShop', numberOfStars=0.0, noOfDollarSigns=2}", shop.toString());
+    }
+
+    @Test
+    public void testShopAddReview() {
+        Shop shop = new Shop("Clothing Shop", "Fashion for all", 3);
+        Review review = new Review("Great selection!", "Mohamad", 4);
+        shop.addReview(review);
+        assertEquals("Shop{name='Clothing Shop', numberOfStars=4.0, noOfDollarSigns=3}", shop.toString());
+    }
+
+    @Test
+    public void testTheaterConstructor() {
+        Theater theater = new Theater("Theater X");
+        assertEquals("Theater{name='Theater X', List of movie'[]', numberOfStars'0.0'}", theater.toString());
+    }
+
+    @Test
+    public void testTheaterAddMovie() {
+        Theater theater = new Theater("Theater X");
+        theater.addMovie("Movie 1");
+        theater.addMovie("Movie 2");
+        assertEquals("Theater{name='Theater X', List of movie'[Movie 1, Movie 2]', numberOfStars'0.0'}", theater.toString());
+    }
+
+    @Test
+    public void testTheaterAddReview() {
+        Theater theater = new Theater("Theater X");
+        theater.addMovie("Movie A");
+        Review review = new Review("Amazing!", "Mohamad", 5, "Movie A");
+        theater.addReview(review);
+        assertEquals("Theater{name='Theater X', List of movie'[Movie A]', numberOfStars'5.0'}", theater.toString());
+    }
+
+    @Test
+    public void testTheaterAddReviewWithoutMovie() {
+        Theater theater = new Theater("Cinemas");
+        Review review = new Review("Nice", "Mohamad", 4);
+        theater.addReview(review);
+        assertEquals("Theater{name='Cinemas', List of movie'[]', numberOfStars'4.0'}", theater.toString());
     }
 }
